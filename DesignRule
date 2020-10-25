@@ -1,0 +1,78 @@
+命名は基本のcssや関数の命名はキャメルケースで行う
+idやユーティリティクラスはスネークケースでもおけ
+
+Pageディレクトリ
+1,一番大きい枠はid="page" ,　class="basePage"をつける
+2,ベースのページの背景色は#f8f8f8と#070707の二種類
+3,二つ目の枠はcontentsAreaクラスのタグにする、サイズはid="page"からheaderとfooterのサイズを抜いたもの
+4,headerとfooterのサイズは横の長さを１としたとき幅が0.303になるようにする
+5,なるたけpositionは使わない
+6,MainContentsのpaddingは5px
+
+material designs
+1,一番大きい枠はファイル名と同じクラス名をつける
+2,二番目はファイル名+container
+
+layout ディレクトリ
+1,一番大きい枠はmain, id="myApp"にする
+
+
+リスポンシブなヘッダーフッターサイズはあとで
+
+
+・z-index
+header-10
+sideMenu-9~8
+footer-7
+
+関数
+_名前 () {}
+
+marginは使わない
+
+padingtop 32pxを、ブロックごとの幅の基本にする
+
+
+半角英数字
+/^[a-zA-Z0-9!-/:-@¥[-`{-~]*$/
+
+
+
+
+8/16
+改修しなきゃいけない箇所
+→罰押してもtableなどが残る
+
+→see Passwordを押してる最中はpasswordを表示→8/16すみ
+
+→消去ボタンとdataTabの同期→8/22すみ
+
+→DarkModeとNormalModeの切り替え
+
+→デザインの改修→8/25すみ
+
+9/4
+CSSをBEM設計に移行
+ハンバーガーメニューだけおいとく
+
+→sumery のパネルを作成しlistレンダリング
+
+→生データ抜いてグラフなどを表示
+
+→loadingAnimation
+
+→0auth認証
+
+→エクセルの編集
+
+→excel読み込みの設定
+
+→SheetDataView、めっちゃ訳わからん
+
+CSS設計は基本BEM
+
+Block_Element--Modifiere
+
+
+Layoutの一番上のレイヤーはbasePage
+contentsAreaの子供は擬似最上レイヤー

@@ -1,0 +1,51 @@
+{
+  "name": "Frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "npm run lint:js"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/device": "^1.2.7",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "aws-sdk": "^2.764.0",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "danfojs-node": "^0.1.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "net": "^1.0.2",
+    "nuxt": "^2.14.1",
+    "nuxt-webfontloader": "^1.1.0",
+    "qs": "^6.9.4",
+    "request": "^2.88.2",
+    "tls": "0.0.1",
+    "vue-dragscroll": "^2.1.0",
+    "vue-xlsx": "^0.2.1",
+    "vuex": "^3.5.1",
+    "vuex-persistedstate": "^3.1.0",
+    "xlsx": "^0.16.7"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/svg": "^0.1.11",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.3.1"
+  }
+}

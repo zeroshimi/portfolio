@@ -1,0 +1,30 @@
+sassモジュールでのエラー
+Invalid options object. Sass Loader has been initialized using an options object that does not match the API schema.
+
+npm uninstall --save-dev sass-loader
+npm install --save-dev sass-loader@7.1.0
+
+xlsxでのエラー
+Unexpected token < - Missing stack frames
+→xlsxをpluginにし、client側で操作させる
+
+
+excelを読み込んだ後のJsonの出力が非同期になっていないので、v-if="collection"
+をulタグに記入しないとエラーが出る
+
+section はheigh100% width100%当たってない
+
+
+if (Object.keys(e.target.files).length >= 2) {
+        e.target.files[Symbol.iterator] = function* () {
+          const properties = Object.keys(this)
+          for (const i of properties) {
+            yield [this[i]]
+          }
+        }
+        for (const v of e.target.files) {
+          this._addFileData(v)
+        }
+      } else {
+        this._addFileData([...e.target.files])
+      }

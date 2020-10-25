@@ -1,0 +1,338 @@
+@import './variables';
+
+table {
+  table-layout: fixed;
+  tbody {
+    
+    tr {
+      height: 60px;
+      &:first-child {
+        td {
+          background-color: gray;
+          cursor: pointer;
+        &:hover {
+          background-color: #DCDCDC;
+        }
+      }
+    }
+  }
+}
+}
+
+td {
+  border:solid 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 120px;
+  word-wrap: break-word;
+}
+
+.basePage {
+  background-color: inherit;
+  word-wrap: break-word;
+}
+
+.openMenuWidth {
+  transition: all .3s linear;
+  width:70%;
+}
+
+.notOpenMenuWidth {
+  transition: all .3s linear;
+  width: 100%;
+}
+
+.contentsArea{
+  align-content: center;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  transition: all .3s ease-in-out;
+  &_sideBar{
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 30%;
+  }
+  &_login {
+    align-content: center;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    transition: all .3s ease-in-out;
+  }
+}
+.imgContainer{
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px;
+}
+
+.btn{
+  &-displayExcel {
+
+  }
+}
+
+.loginBtn {
+  padding: 8px 0 8px 0;
+  width: 100%;
+  &NormalBackGroundColor {
+    background-color: $normal-sub-color;
+    &:hover {
+      background-color: $normal-main-color;
+    }
+    &:focus {
+      background-color: $normal-main-color;
+    }
+    &:active {
+      background-color: $normal-sub-color;
+    }
+  }
+  &DarkBackGroundColor {
+    background-color: $dark-sub-color;
+    &:hover {
+      background-color: $dark-main-color;
+    }
+    &:focus {
+      background-color: $dark-main-color;
+    }
+    &:active {
+      background-color: $dark-sub-color;
+    }
+  }
+  
+  &Container {
+    padding:16px;
+  }
+}
+
+//大文字変換
+.u-uppercase {
+  text-transform: uppercase;
+}
+
+//非表示
+.u-displayNone {
+  display:none;
+}
+
+//フォント
+.header-font-family {
+  font-family: 'Kaushan Script', cursive;
+}
+
+.headline-font-family {
+  font-family: 'ゴンタ';
+}
+
+.normal-font-family {
+  font-family: 'スマート';
+}
+
+//文字サイズ
+.u-font-size-ss{
+  font-size: $font-size-ss;
+}
+
+.u-font-size-s{
+  font-size: $font-size-s;
+}
+
+.u-font-size-m{
+  font-size: $font-size-m;
+}
+
+.u-font-size-l{
+  font-size: $font-size-l;
+}
+
+.u-border-solid {
+  border:solid 3px;
+}
+
+.u-border-dot {
+  border:dotted 3px;
+}
+
+
+
+// font color 
+.normalMainFontColor {
+  color:$dark-base-color;
+  transition: color .3s ease-in-out;
+}
+.darkMainFontColor {
+  color: $normal-base-color;
+  transition: color .3s ease-in-out;
+}
+
+
+
+// main page
+.normalPageBackGroundColor {
+  background-color: $normal-base-color;
+  transition: all .3s ease-in-out;
+}
+.darkPageBackGroundColor {
+  background-color: $dark-base-color;
+  transition: all .3s ease-in-out;
+}
+
+
+
+// sidemenu
+.normalSideMenuBackGroundColor {
+  background-color: $normal-main-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkSideMenuBackGroundColor {
+  background-color: $dark-main-color;
+  transition: all .3s ease-in-out;
+}
+
+
+
+// fileList
+.normalFileListBackGroundColor {
+  background-color: $normal-base-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkFileListBackGroundColor {
+  background-color: $dark-base-color;
+  transition: all .3s ease-in-out;
+}
+
+
+
+// Header 
+.normalHeaderBackGroundColor {
+  background-color: $normal-base-color;
+  transition: all .3s ease-in-out;
+}
+
+.normalHeaderBorderColor {
+  border-color:$normal-sub-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkHeaderBackGroundColor {
+  background-color: $dark-base-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkHeaderBorderColor {
+  border-color: $dark-sub-color;
+  transition: all .3s ease-in-out;
+}
+
+
+
+// table cell index
+.normalTableCellIndexBackGroundColor {
+  background-color: $normal-td-cell-index-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkTableCellIndexBackGroundColor {
+  background-color: $dark-td-cell-index-color;
+  transition: all .3s ease-in-out;
+}
+
+
+
+// ハンバーガーメニュー
+.normalHumbergerBtnLineColor {
+  background-color: $dark-base-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkHumbergerBtnLineColor {
+  background-color: $normal-base-color
+  ;
+  transition: all .3s ease-in-out;
+}
+
+
+
+// ログアウトボタン
+.normalLogoutBtnBackGroundColor {
+  background-color: $normal-sub-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkLogoutBtnBackGroundColor {
+  background-color: $dark-sub-color;
+  transition: all .3s ease-in-out;
+}
+
+
+
+//storedContent
+.normalStoredContentBackGroundColor {
+  background-color: $normal-sub-color;
+  transition: all .3s ease-in-out;
+}
+
+.darkStoredContentBackGroundColor {
+  background-color: $dark-sub-color;
+  transition: all .3s ease-in-out;
+}
+
+
+.u-UIpaddingTop{
+  padding-top:$Ui-height;
+}
+
+.u-UIpaddingBottom{
+  padding-bottom:$Ui-height;
+}
+
+//  モバイル用
+@media (max-width: 767px) { 
+  .openMenuWidth {
+    width:100%;
+  }
+  .contentsArea{
+    display: block;
+    &_sideBar{
+      background-color:rgba(0, 0, 0, 0);
+      overflow-x: hidden;
+      position: fixed;
+      white-space: nowrap;
+      width: 100%;
+      z-index: 9;
+      /*
+      padding: 8px 16px 0 8px;*/
+    }
+  }
+  
+  .MainContents{
+    padding:16px 8px 16px 8px;
+    z-index: 5;
+  }
+  
+  .imgContainer{
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  .u-UIpaddingBottom{
+    padding-bottom:$Ui-height;
+  }
+  .normalUploadAreaBorderColor {
+    border-color: $dark-base-color;
+    transition: border .3s ease-in-out;
+  }
+  .darkUploadAreaBorderColor {
+    border-color: $normal-base-color;
+    transition: border .3s ease-in-out;
+  }
+ }

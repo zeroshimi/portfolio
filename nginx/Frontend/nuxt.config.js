@@ -114,7 +114,7 @@ export default {
   serverMiddleware: [
     { path: '/api', handler: '~/api/index.js' }
   ],
-  auth: {
+  /*auth: {
     cookie: false,
     redirect: {
       login: '/login', // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
@@ -134,7 +134,7 @@ export default {
   },
   router: {
     middleware: ['auth']
-  },
+  },*/
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

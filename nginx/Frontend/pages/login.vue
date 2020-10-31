@@ -36,7 +36,7 @@
         </section>
         <!-- loginボタン -->
         <section class="loginBtnContainer">
-          <loginBtn
+          <!--<loginBtn
             :btnType="'button'"
             :className="`loginBtn ${isDarkMode ? 'loginBtnDarkBackGroundColor' : 'loginBtnNormalBackGroundColor'}`"
             :methodsName="'_login'"
@@ -44,7 +44,8 @@
             @click="_outFocus($event)"
           >
             {{ isSignUp ? 'login': 'signup' }}
-          </loginBtn>
+          </loginBtn>-->
+          <button @click="preLogin">ログイン</button>
         </section>
         <section class="switchUserModeContainer">
           <a href="#" class="a switchUserMode" @click="_switchUserMode($event)">
@@ -57,7 +58,7 @@
 </template>
 <script>
 import IdPasswordArea from './../components/ui/input'
-import loginBtn from './../components/ui/btn/generalBtn'
+// import loginBtn from './../components/ui/btn/generalBtn'
 import seePasswordBtn from './../components/ui/btn/generalBtn'
 import heading from './../components/layouts/headingCaption'
 export default {
@@ -181,11 +182,14 @@ export default {
     },
     _seePasswordMouseUp () {
       this.openPassword = false
+    },
+    preLogin () {
+      this.$router.push('/')
     }
   },
   components: {
     IdPasswordArea,
-    loginBtn,
+    // loginBtn,
     seePasswordBtn,
     heading
   },

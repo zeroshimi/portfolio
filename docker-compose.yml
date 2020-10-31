@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  backend:
+    container_name: FastAPI
+    build: 
+        context: .
+        dockerfile: ./preBackend/fastAPI-Dockerfile
+    restart: always
+    volumes:
+      - ./preBackend:/var/www/html
+    ports:
+      - 8000:8000
+    tty: true
+
+  # frontend:
+  #   container_name: Nuxt
+  #   build:
+  #     context: .
+  #     dockerfile: ./Nuxt-Dockerfile
+  #     args:
+  #       - WORKDIR=$WEB_WORKDIR
+  #       - PORT=$WEB_PORT
+  #       - CONTAINER_PORT=$WEB_CONTAINER_PORT
+  #       - HOST=$HOST
+  #   restart: always
+  #   volumes:
+  #     - ./Frontend:/$WEB_WORKDIR
+  #     - /$WEB_WORKDIR/node_modules
+  #   ports:
+  #     - "$WEB_PORT:$WEB_CONTAINER_PORT"
+  #   depends_on:
+  #     - backend
+  #   tty: true
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./nginx/nginx-Dockerfile
+    ports:
+        - "80:80"
+    volumes:
+        - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        - ./nginx/Frontend:/var/www/html/Frontend:cached
+    depends_on:
+        - backend
+  # db:
+  #    image: {まだ決まってない}
+  #    restart: always
+  #    environment:
+  #    ports:
+  #    volumes:どこにマウントするか

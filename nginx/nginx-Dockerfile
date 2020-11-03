@@ -7,5 +7,8 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN mkdir /var/www/ && mkdir /var/www/html && mkdir /var/www/html/Frontend
 RUN chmod -R 777 /var/www/html/Frontend
 WORKDIR /var/www/html/Frontend
+COPY ./nginx/Frontend/package*.json ./
 RUN apt-get install -y nodejs
-RUN npm install npm@latest -g
+RUN npm install -g npm@latest
+
+RUN npm -v

@@ -2,7 +2,7 @@
 
     docker-compose up -d
 
-2,その後 API側→docker exec -it FastAPI sh、Web側→docker-compose exec nginx bashでコンテナの内部に入る
+2,その後 API側→docker exec -it FastAPI bash、Web側→docker-compose exec nginx bashでコンテナの内部に入る
 
 3、API側の場合
     pip install -r requirements.txt

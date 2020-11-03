@@ -43,7 +43,7 @@ services:
     volumes:
         - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
         - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-        - ./nginx/Frontend:/var/www/html/Frontend:cached
+        - ./nginx/Frontend:/var/www/html/Frontend
     depends_on:
         - backend
   # db:

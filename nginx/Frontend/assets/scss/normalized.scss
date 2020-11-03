@@ -16,7 +16,8 @@
   }
   
   * {
-    font-size: $font-size-s;
+    box-sizing: border-box;
+    font-size: $font-size-ss;
     margin:0;
     padding:0;
     scrollbar-width: none;
@@ -59,7 +60,12 @@
   }
   
   .button {
+    appearance: none;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
+    outline: none;
+    padding: 0;
     &:hover {
       box-shadow: 0 0 .5rem rgba(255, 255, 255, .5 );
     }

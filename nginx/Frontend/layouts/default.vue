@@ -61,6 +61,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 main{
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   height: 100%;

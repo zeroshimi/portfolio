@@ -1,2 +1,6 @@
 python-multipart
 python-dotenv
+uvicorn
+fastapi
+python-jose
+peewee

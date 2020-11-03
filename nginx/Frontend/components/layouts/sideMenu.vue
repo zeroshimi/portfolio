@@ -7,7 +7,7 @@
   >
     <section class="sideMenu_upload">
       <div class="sideMenu_upload_header">
-        <img :src="`/images/${ isDarkMode ?'darkAddIcon.svg' : 'normalAddIcon.svg' }`" class="addExcelBtn" @click="_logInput" draggable="false">
+        <fa :icon="faUpload" @click="_logInput" draggable="false" class="addExcelBtn"/>
         <div class="sideMenu_upload_heading">
           <heading>
             アップロード
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { faUpload } from '@fortawesome/free-solid-svg-icons'
 import DarkModeBtn from './../ui/btn/darkModeBtn'
 import upload from './uploadArea'
 import heading from './headingCaption'
@@ -44,6 +45,9 @@ export default {
     },
     wb () {
       return this.$store.getters.getWb
+    },
+    faUpload () {
+      return faUpload
     }
   },
   components: {
@@ -103,6 +107,7 @@ export default {
   opacity: 0;
 }
 .addExcelBtn {
+  color: inherit;
   cursor: pointer;
   height: 32px;
   width: 32px;

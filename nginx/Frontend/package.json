@@ -12,10 +12,15 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/device": "^1.2.7",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/pwa": "^3.2.2",
     "aws-sdk": "^2.783.0",
     "axios": "^0.19.2",

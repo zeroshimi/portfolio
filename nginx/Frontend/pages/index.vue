@@ -7,27 +7,25 @@
         { isOpenDarkMenuBackGround:isOpenMenu && !$device.isDesktop && isDarkMode }
       ]"
     >
-      <transition name="fade">
-        <div
-          v-show="isOpenMenu"
-          id="sideBar"
-          class="contentsArea_sideBar"
-          @click="_closeSideMenuMobile"
-        >
-          <SideBar @_addFileData="_addFileData" />
-          <form class="u-displayNone">
-            <label>
-              <input
-                id="addFilesIcon"
-                type="file"
-                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"
-                @click.stop
-                @input.prevent="_changeInputElement($event)"
-              >
-            </label>
-          </form>
-        </div>
-      </transition>
+      <div
+        v-show="isOpenMenu"
+        id="sideBar"
+        class="contentsArea_sideBar"
+        @click="_closeSideMenuMobile"
+      >
+        <SideBar @_addFileData="_addFileData" />
+        <form class="u-displayNone">
+          <label>
+            <input
+              id="addFilesIcon"
+              type="file"
+              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"
+              @click.stop
+              @input.prevent="_changeInputElement($event); _uploadFile($event);"
+            >
+          </label>
+        </form>
+      </div>
       <div class="mainContents" :class="{ 'mainContents--openMenuWidth':isOpenMenu }">
         <section v-show="!fileDatas" class="mainContents_pastAnalysis">
           <nuxt-link to="demo_danfo">demo</nuxt-link>
@@ -36,24 +34,14 @@
           </heading>
           <!--ここクソコード-->
           <div class="mainContents_pastAnalysis_panels">
-            <section
-              v-for="(num, index) in [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
+            <userImage
+              v-for="(name, index) in [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
               :key="index"
-              style="border:solid 1px;padding:16px;"
-              :class="[{
-                normalStoredContentBackGroundColor: !isDarkMode && ($device.isDesktop || !isOpenMenu),
-                darkStoredContentBackGroundColor: isDarkMode && ($device.isDesktop || !isOpenMenu)
-              }]"
-            >
-              <heading
-                class="pastAnalysis_heading"
-              >
-                過去の作成画像
-              </heading>
-              <button class="button">
-                ダウンロード{{ num }}:{{ index+1 }}
-              </button>
-            </section>
+              :index="index"
+              :title="String(name)"
+              :isOpenMenu="isOpenMenu"
+              :isDarkMode="isDarkMode"
+            />
           </div>
         </section>
         <section v-if="fileDatas" class="mainContents_newAnalysis">
@@ -75,13 +63,14 @@ import NavigationTab from './../components/layouts/navigationSheetData'
 import SheetDataView from './../components/layouts/sheetDataView'
 import heading from './../components/layouts/headingCaption'
 import SideBar from './../components/layouts/sideMenu'
+import userImage from './../components/main/userPortfolio'
 export default {
-  beforeUpdate () {},
   components: {
     NavigationTab,
     SheetDataView,
     heading,
-    SideBar
+    SideBar,
+    userImage
   },
   data () {
     return {
@@ -188,6 +177,16 @@ export default {
       this._addFileData([...e.target.files])
       // 初期化処理
       e.target.value = ''
+    },
+    _uploadFile (e) {
+      // const file = e.target.files[0]
+      // this.$axios.$post('http:172.0.0.1:3000/api/post', { data: file }).then((res) => {
+      //   console.log('success')
+      //   console.log(res)
+      // }).catch((error) => {
+      //   console.log(error)
+      // })
+      console.log(this.$axios.post())
     },
     _addFileData (data) {
       this.$store.dispatch('runAddFileData', data)

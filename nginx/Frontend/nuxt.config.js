@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { BASE_URL, API_URL } = process.env
+//const { BASE_URL, API_URL } = process.env
 
 export default {
   loading: {
@@ -8,10 +8,10 @@ export default {
   vue: {
     devtools: true
   },
-  env: {
+  /*env: {
     BASE_URL,
     API_URL
-  },
+  },*/
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -62,7 +62,8 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/fontawesome'
   ],
   /*
   ** Nuxt.js modules
@@ -76,6 +77,9 @@ export default {
     'nuxt-webfontloader',
     '@nuxtjs/auth'
   ],
+  fontawesome: {
+    component: 'fa'
+  },
   webfontloader: {
     google: {
       families: ['Bangers', 'Caveat', 'Kaushan+Script']
@@ -86,7 +90,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    BASE_URL
+    baseURL: 'http://172.0.0.1:3000'
   },
   serverMiddleware: [
     { path: '/api', handler: '~/api/index.js' }

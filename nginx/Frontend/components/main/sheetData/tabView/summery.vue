@@ -3,13 +3,12 @@
     <heading>
       {{ String(tabData.name) }}
     </heading>
+    <slot />
   </section>
 </template>
 <script>
-import heading from './../headingCaption'
+import heading from './../../../globalComponent/headingCaption'
 export default {
-  mounted () {
-  },
   props: {
     tabData: {
       type: Object,

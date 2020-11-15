@@ -25,6 +25,9 @@ const actions = {
   },
   runSetTableHeaders ({ commit }, headers) {
     commit('setTableHeaders', headers)
+  },
+  RUN_DELETE_FILE_DATA ({ commit }, index) {
+    commit('DELETE_FILE_DATA', index)
   }
 }
 

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { XlsxRead, XlsxSheets, XlsxWorkbook, XlsxDownload, XlsxTable, XlsxJson } from 'vue-xlsx/dist/vue-xlsx.es.js'
 import VueDragscroll from 'vue-dragscroll'
+import VueLoading from 'vue-loading-template'
 import _fileNameRemaker from './modules/_stringReMaker'
 import _range from './modules/_range'
 import _dateFromSn from './modules/dateFromSn'
@@ -37,5 +38,6 @@ Vue.mixin({
 })
 
 Vue.use(VueDragscroll)
+Vue.use(VueLoading)
 
 export default _localStrage

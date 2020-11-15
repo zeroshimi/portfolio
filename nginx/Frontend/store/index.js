@@ -8,7 +8,7 @@ const state = () => ({
   displayExcelIndex: 0,
   displaySheetIndex: 0,
   isSignUp: true,
-  wb: null,
+  wb: [],
   rowList: [],
   tableHeaders: []
 })
@@ -87,13 +87,18 @@ const mutations = {
     state.isSignUp = bool
   },
   setWb (state, wbData) {
-    state.wb = wbData
+    state.wb.push(wbData)
   },
   setRowList (state, rowData) {
     state.rowList = rowData
   },
   setTableHeaders (state, headers) {
     state.tableHeaders = headers
+  },
+  DELETE_FILE_DATA (state, index) {
+    const newWb = JSON.parse(JSON.stringify(state.wb))
+    newWb.splice(index, 1)
+    state.wb = JSON.parse(JSON.stringify(newWb))
   }
 }
 
@@ -117,7 +122,7 @@ const actions = {
     commit('addFileData', dataList)
   },
   runSetIsUpload ({ commit }, boolean) {
-    commit('isUpload', boolean)
+    commit('setIsUpload', boolean)
   },
   runSetDisplayExcel ({ commit }, excelIndex) {
     commit('setDisplayExcel', excelIndex)
@@ -139,6 +144,9 @@ const actions = {
   },
   runSetTableHeaders ({ commit }, headers) {
     commit('setTableHeaders', headers)
+  },
+  RUN_DELETE_FILE_DATA ({ commit }, index) {
+    commit('DELETE_FILE_DATA', index)
   }
 }
 

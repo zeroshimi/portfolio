@@ -3,73 +3,80 @@
 @font-face {
     font-family: 'ゴンタ'; // <-好きな名前をつけれます。
     src: url('./../font/FZゴンタかな.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'ビースト'; // <-好きな名前をつけれます。
+  src: url('./../font/ビースト明朝mini-R.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'スマート';
+  src: url('./../font/03スマートフォントUI.otf') format("opentype");
+}
+
+* {
+  box-sizing: border-box;
+  font-size: $font-size-ss;
+  margin:0;
+  padding:0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display:none;
   }
-  
-  @font-face {
-    font-family: 'ビースト'; // <-好きな名前をつけれます。
-    src: url('./../font/ビースト明朝mini-R.otf') format("opentype");
-  }
-  
-  @font-face {
-    font-family: 'スマート';
-    src: url('./../font/03スマートフォントUI.otf') format("opentype");
-  }
-  
-  * {
-    box-sizing: border-box;
-    font-size: $font-size-ss;
-    margin:0;
-    padding:0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display:none;
-    }
-  }
-  
-  body {
-    font-family: "Helvetica Neue",
-      Arial,
-      "Hiragino Kaku Gothic ProN",
-      "Hiragino Sans",
-      Meiryo,
-      sans-serif;
-    height: 100%;
-    width:100%;
-  }
-  
-  .a {
-    color: inherit; 
-    display: block;
-    outline: none;
-    text-decoration: none;
-  }
-  
-  html {
+}
+
+body {
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+  height: 100%;
+  width:100%;
+}
+
+.a {
+  color: inherit; 
+  display: block;
+  outline: none;
+  text-decoration: none;
+}
+
+html {
+  height:100%;
+  touch-action: manipulation;
+}
+
+div {
     height:100%;
-    touch-action: manipulation;
+    width:100%;
+}
+
+.ul {
+  list-style: none;
+}
+
+.button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  &:hover {
+    box-shadow: 0 0 .5rem rgba(255, 255, 255, .5 );
   }
-  
-  div {
-      height:100%;
-      width:100%;
+  &:focus {
+    outline:0;
   }
-  
-  .ul {
-    list-style: none;
-  }
-  
-  .button {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 0;
-    &:hover {
-      box-shadow: 0 0 .5rem rgba(255, 255, 255, .5 );
-    }
-    &:focus {
-      outline:0;
-    }
-  }
+}
+.input {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: none;
+}

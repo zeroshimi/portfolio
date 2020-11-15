@@ -4,7 +4,7 @@ const state = () => ({
   displayFile: null,
   displayExcelIndex: 0,
   displaySheetIndex: 0,
-  wb: null,
+  wb: [],
   rowList: [],
   tableHeaders: []
 })

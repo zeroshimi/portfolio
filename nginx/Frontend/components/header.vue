@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import HumbergerBtn from './../ui/btn/humbergerMenuBtn'
-import logOutBtn from './../ui/btn/generalBtn'
+import HumbergerBtn from './uniqueLayout/humbergerMenuBtn'
+import logOutBtn from './globalComponent/generalBtn'
 export default {
   components: {
     HumbergerBtn,
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../../assets/scss/variables';
+@import './../assets/scss/variables';
 .header {
   border-bottom:solid 1px;
   position: fixed;

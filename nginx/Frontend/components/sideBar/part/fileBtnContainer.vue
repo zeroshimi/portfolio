@@ -1,70 +1,17 @@
 <template>
   <section>
     <section class="fileBtnContainer">
-      <OpenSheetBtn
-        :trueImage="isDarkMode ? `/images/filePulldownIcon/${ 'darkSheetBtnIcon.png'}`:`/images/filePulldownIcon/${'normalSheetBtnIcon.png'}`"
-        :falseImage="isDarkMode ? `/images/filePulldownIcon/${ 'darkSheetOpenBtnIcon.png'}`:`/images/filePulldownIcon/${'normalSheetOpenBtnIcon.png'}`"
-        :index="index"
-        @_switchExpanded="_switchExpanded"
-        @_switchSheetList="_switchSheetList"
-        :value="isOpen"
-      />
-      <object
-        id="excel-svg"
-        type="image/svg+xml"
-        :data="`/images/excelIcon/${ isDarkMode ? 'darkXlsx.svg':'normalXlsx.svg' }`"
-        class="excelImage"
-      />
+      <fa :icon="faAngleRight" draggable="false" @click="isOpen=!isOpen" :class="{'u-rotate-90': isOpen}" />
+      <fa :icon="faFileExcel" draggable="false" />
       <div class="fileNameContainer" :class="[{ darkMainFontColor:isDarkMode, normalMainFontColor:!isDarkMode }]">
-        {{ _fileNameRemaker(file[0].name, 9, 5, 0) }}
+        {{ _fileNameRemaker(workbook.name, 9, 5, 0) }}
       </div>
-      <div class="deleateFileBtnContainer" @click="_deleateExcelFileData(index)">
-        <a :class="['deleateFileBtn','u-font-size-m',{ darkMainFontColor:isDarkMode, normalMainFontColor:!isDarkMode }, 'a']">
-          &#215;
+      <div class="deleateFileBtnContainer" @click="_delete(index)">
+        <a :class="['deleateFileBtn','u-font-size-s',{ darkMainFontColor:isDarkMode, normalMainFontColor:!isDarkMode }, 'a']">
+          <fa :icon="faTrashAlt" draggable="false" />
         </a>
       </div>
     </section>
-    <!--こっから下改修ずみ-->
-    <!--
-    <xlsx-read :file="file[0]">
-      <template #default="{loading}">
-        <span v-if="loading" class="loadingText">Loading...</span>
-        <xlsx-sheets
-          v-if="isOpen"
-          :id="`fileBtnList${index}`"
-          aria-hidden="true"
-          class="sheet"
-        >
-          <template #default="{ sheets }">
-            <ul class="ul sheet_list">
-              <li
-                v-for="(sheet, sheetIndex) in sheets"
-                :key="sheetIndex"
-                :value="sheet"
-                :class="[
-                  'sheet_list_files',
-                  {
-                    darkFileListBackGroundColor:isDarkMode,
-                    normalFileListBackGroundColor:!isDarkMode
-                  } ,
-                  { 'is-active': (activeExcelIndex===index && activeSheetIndex===sheetIndex) ,
-                    '': !(activeExcelIndex===index && activeSheetIndex===sheetIndex)
-                  }
-                ]"
-                :aria-controls="`Excel${index}Sheet${sheetIndex}`"
-                :aria-expanded="String(activeExcelIndex===index && activeSheetIndex===sheetIndex)"
-                @click="_activate(index, sheetIndex)"
-              >
-                <a :id="`Excel${index}Sheet${sheetIndex}`" :aria-hidden="String(!(activeExcelIndex===index && activeSheetIndex===sheetIndex))">
-                  {{ _fileNameRemaker(sheet, 9, 7, 0) }}
-                </a>
-              </li>
-            </ul>
-          </template>
-        </xlsx-sheets>
-      </template>
-    </xlsx-read>
-    -->
     <div
       v-if="isOpen"
       :id="`fileBtnList${index}`"
@@ -73,7 +20,7 @@
     >
       <ul class="ul sheet_list">
         <li
-          v-for="(sheet, sheetIndex) in sheets"
+          v-for="(sheet, sheetIndex) in _getSheetList(workbook.workbook)"
           :key="sheetIndex"
           :value="sheet.name"
           :class="[
@@ -99,7 +46,9 @@
   </section>
 </template>
 <script>
-import OpenSheetBtn from './../btn/openSheetBtn'
+//  ここで選択sheet選択し、以下変更
+import { faAngleRight, faFileExcel, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+// import OpenSheetBtn from './openSheetBtn'
 export default {
   props: {
     index: {
@@ -108,16 +57,12 @@ export default {
         return null
       }
     },
-    file: {
-      type: Array,
+    workbook: {
+      type: Object,
+      required: true,
       default () {
-        return []
+        return {}
       }
-    }
-  },
-  mounted () {
-    if (this.index === 0) {
-      this.$store.dispatch('runSetDisplayFile', this.file[0])
     }
   },
   data () {
@@ -140,10 +85,19 @@ export default {
     },
     sheets () {
       return this._getSheetList(this.$store.getters.getWb)
+    },
+    faAngleRight () {
+      return faAngleRight
+    },
+    faFileExcel () {
+      return faFileExcel
+    },
+    faTrashAlt () {
+      return faTrashAlt
     }
   },
   components: {
-    OpenSheetBtn
+    // OpenSheetBtn
   },
   methods: {
     _switchExpanded (e) {
@@ -152,6 +106,9 @@ export default {
     _deleateExcelFileData (index) {
       const data = this.fileList.filter(n => this.fileList.indexOf(n) !== index)
       this.$store.dispatch('runSetFileData', data)
+    },
+    _delete (index) {
+      this.$store.dispatch('RUN_DELETE_FILE_DATA', index)
     },
     _switchSheetList () {
       this.isOpen = !this.isOpen
@@ -170,7 +127,7 @@ export default {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding:0 0 0 16px;
+  padding:0 16px;
 }
 .excelImage {
   height: 24px;

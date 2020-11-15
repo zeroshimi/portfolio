@@ -2,7 +2,7 @@
   <section class="uploadedFiles">
     <ul class="ul uploadedFiles_list">
       <li
-        v-for="(file, index) in fileList"
+        v-for="(workbook, index) in workbooks"
         :key="index"
         class="uploadedFiles_list_panels uploadedFiles_list_panels--boxShadow  uploadedFiles_list_panels--cursor u-font-size-s"
         :class="
@@ -12,15 +12,24 @@
           ]
         "
       >
-        <FileBtnContaienr :index="index" :file="file" />
+        <FileBtnContaienr :index="index" :workbook="workbook" />
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import FileBtnContaienr from './../ui/container/fileBtnContainer'
+import FileBtnContaienr from './fileBtnContainer'
 export default {
+  props: {
+    workbooks: {
+      type: Array,
+      required: true,
+      default () {
+        return []
+      }
+    }
+  },
   data () {
     return {}
   },
@@ -46,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../../assets/scss/variables';
+@import './../../../assets/scss/variables';
 .uploadedFiles {
   padding: 32px 0;
   width: 100%;

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Header from './../components/layouts/header'
+import Header from './../components/header'
 export default {
   data () {
     return {

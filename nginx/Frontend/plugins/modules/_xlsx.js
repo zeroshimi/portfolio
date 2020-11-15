@@ -37,4 +37,25 @@ const _getSheetHtml = (workbook, index) => {
   return data
 }
 
-export default { _readFile, _getSheetList, _getSheet, _getSheetJson, _getSheetHtml }
+const _getColumnData = (workbook) => {
+  const sheetNameList = workbook.SheetNames
+  // シート1をデータを取得します
+  const Sheet1 = workbook.Sheets[sheetNameList[0]]
+  // エクセルデータの末端の行数を取得する
+  const endCol = Sheet1['!ref'].match(/\[A-Z+]([0-9]+)/)[1]
+  // 取得したいセルの範囲を指定し直す。下記の例ではA6からK列の末端行まで
+  Sheet1['!ref'] = `A6:K6${endCol}`
+  // JSONオブジェクトとして取得
+  const Sheet1Json = XLSX.utils.sheet_to_json(Sheet1)
+  let ct = 0
+  for (const cl of Sheet1Json) {
+    // 指定したセル範囲の中でも2行目から6行目だけを取得する処理
+    if (ct >= 1 && ct < 5) {
+      console.log(cl)
+    }
+    if (cl['A1の内容'] === '') { break }
+    ct++
+  }
+}
+
+export default { _readFile, _getSheetList, _getSheet, _getSheetJson, _getSheetHtml, _getColumnData }

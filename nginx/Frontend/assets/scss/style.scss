@@ -119,6 +119,14 @@ td {
   display:none;
 }
 
+// 回転
+.u-rotate {
+  &-90 {
+    transition: transform 0.5s ease;
+    transform: rotate(90deg);
+  }
+}
+
 //フォント
 .header-font-family {
   font-family: 'Kaushan Script', cursive;

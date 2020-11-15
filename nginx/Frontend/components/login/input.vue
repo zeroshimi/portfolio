@@ -1,7 +1,7 @@
 <template>
   <label class="inputArea">
     <input
-      class="inputArea_main"
+      class="inputArea_main input"
       :class="[
         { darkInputBackGroundColor: isDarkMode, normalInputBackGroundColor: !isDarkMode },
         { darkModeInputCursorColor: isDarkMode }

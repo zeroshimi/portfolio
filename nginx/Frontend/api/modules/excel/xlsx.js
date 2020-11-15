@@ -1,19 +1,21 @@
 import XLSX from 'xlsx'
 
-const _readFile = async ({ data }) => {
+const _readFile = async (req) => {
+  console.log(req.body)
   let workbook
-  await new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const data = new Uint8Array(e.target.result)
-      resolve(XLSX.read(data, { type: 'array' }))
-      /* DO SOMETHING WITH workbook HERE */
-    }
-    reader.readAsArrayBuffer(data)
-  }).then((result) => {
-    workbook = result
-  })
-  return workbook
+  // await new Promise((resolve, reject) => {
+  //   const reader = new FileReader()
+  //   reader.onload = (e) => {
+  //     const data = new Uint8Array(e.target.result)
+  //     resolve(XLSX.read(data, { type: 'array' }))
+  //     /* DO SOMETHING WITH workbook HERE */
+  //   }
+  //   reader.readAsArrayBuffer(data)
+  // }).then((result) => {
+  //   workbook = result
+  // })
+  // workbook = XLSX.readFile(data.name)
+  // return workbook
 }
 const _getSheetList = (workbook) => {
   const sheets = workbook.Workbook.Sheets

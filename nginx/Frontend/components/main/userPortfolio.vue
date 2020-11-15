@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import heading from './../layouts/headingCaption'
+import heading from './../globalComponent/headingCaption'
 export default {
   props: {
     title: {

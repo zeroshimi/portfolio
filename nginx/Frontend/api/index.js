@@ -21,7 +21,7 @@ app.post('/django', (req, res) => { practice(req, res) })
 app.post('/jwtCreate', (req, res) => { jwtCreate(req, res) })
 app.post('/signup', (req, res) => { signup(req, res) })
 app.post('/isLogin', (req, res) => { isLogin(req.body) })
-app.post('/xlsx/read-file', (req, res) => {xlsx._readFile(req.body)})
+app.post('/xlsx/read-file', (req, res) => {xlsx._readFile(req)})
 
 export default app
 // backend-frontApi-frontは基本的にresの中身だけ送るような設計にする

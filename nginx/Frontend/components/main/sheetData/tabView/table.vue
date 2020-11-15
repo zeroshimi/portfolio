@@ -1,11 +1,7 @@
 <template>
-  <section v-dragscroll>
-    <!--クソコード-->
-    <slot />
-  </section>
+  <section v-dragscroll id="tableContainer" v-html="tableData" />
 </template>
 <script>
-
 export default {
   props: {
     tabData: {
@@ -19,9 +15,14 @@ export default {
       default () {
         return 0
       }
+    },
+    tableData: {
+      type: String,
+      required: true,
+      default () {
+        return '<table></table>'
+      }
     }
-  },
-  computed: {
   }
 }
 </script>

@@ -57,7 +57,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import './../../assets/scss/variables';
+@import './../../../assets/scss/variables';
 .excelSheetNavigation {
   border-radius: 5px 5px 0 0;
   cursor: pointer;

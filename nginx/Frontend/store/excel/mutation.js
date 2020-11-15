@@ -18,13 +18,18 @@ const mutations = {
     state.displayFile = fileData
   },
   setWb (state, wbData) {
-    state.wb = wbData
+    state.wb.push(wbData)
   },
   setRowList (state, rowData) {
     state.rowList = rowData
   },
   setTableHeaders (state, headers) {
     state.tableHeaders = headers
+  },
+  DELETE_FILE_DATA (state, index) {
+    const newWb = JSON.parse(JSON.stringify(state.wb))
+    newWb.splice(index, 1)
+    state.wb = JSON.parse(JSON.stringify(newWb))
   }
 }
 

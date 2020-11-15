@@ -3,15 +3,13 @@
     <heading>
       {{ String(tabData.name) }}
     </heading>
-    <GeneralBtn>
-      通信
-    </GeneralBtn>
   </section>
 </template>
 <script>
-import heading from './../headingCaption'
-import GeneralBtn from './../../ui/btn/generalBtn'
+import heading from './../../../globalComponent/headingCaption'
 export default {
+  mounted () {
+  },
   props: {
     tabData: {
       type: Object,
@@ -21,8 +19,7 @@ export default {
     }
   },
   components: {
-    heading,
-    GeneralBtn
+    heading
   }
 }
 </script>

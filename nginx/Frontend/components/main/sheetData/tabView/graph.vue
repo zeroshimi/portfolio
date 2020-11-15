@@ -3,11 +3,14 @@
     <heading>
       {{ String(tabData.name) }}
     </heading>
-    <slot />
+    <GeneralBtn>
+      通信
+    </GeneralBtn>
   </section>
 </template>
 <script>
-import heading from './../headingCaption'
+import heading from './../../../globalComponent/headingCaption'
+import GeneralBtn from './../../../globalComponent/generalBtn'
 export default {
   props: {
     tabData: {
@@ -18,7 +21,8 @@ export default {
     }
   },
   components: {
-    heading
+    heading,
+    GeneralBtn
   }
 }
 </script>

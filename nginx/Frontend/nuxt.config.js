@@ -1,5 +1,5 @@
 require('dotenv').config()
-//const { BASE_URL, API_URL } = process.env
+const { BASE_URL, API_URL } = process.env
 
 export default {
   loading: {
@@ -8,10 +8,14 @@ export default {
   vue: {
     devtools: true
   },
-  /*env: {
+  server: {
+    host: 'localhost',
+    port: 3000
+  },
+  env: {
     BASE_URL,
     API_URL
-  },*/
+  },
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -120,6 +124,9 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
+  configureWebpack: {
+    devtool: 'source-map'
+  },
   build: {
   }
 }

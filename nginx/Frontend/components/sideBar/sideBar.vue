@@ -7,20 +7,18 @@
   >
     <section class="sideMenu_upload">
       <div class="sideMenu_upload_header">
-        <fa :icon="faUpload" @click="_logInput" draggable="false" class="addExcelBtn"/>
+        <fa :icon="faUpload" @click="_logInput" draggable="false" class="addExcelBtn" />
         <div class="sideMenu_upload_heading">
-          <heading>
+          <Heading>
             アップロード
-          </heading>
+          </Heading>
         </div>
       </div>
-      <!--pre-->
-      <button class="button" @click="returnSheetData">コンソール</button>
-      <upload>
+      <Upload>
         <template>
-          <UploadFileList />
+          <UploadFileList :workbooks="workbooks" v-if="workbooks.length!==0"/>
         </template>
-      </upload>
+      </Upload>
     </section>
     <DarkModeBtn />
   </div>
@@ -28,11 +26,20 @@
 
 <script>
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
-import DarkModeBtn from './../ui/btn/darkModeBtn'
-import upload from './uploadArea'
-import heading from './headingCaption'
-import UploadFileList from './uploadFileList'
+import DarkModeBtn from './../uniqueLayout/darkModeBtn'
+import Upload from './part/uploadArea'
+import Heading from './../globalComponent/headingCaption'
+import UploadFileList from './part/uploadFileList'
 export default {
+  props: {
+    workbooks: {
+      type: Array,
+      required: true,
+      default () {
+        return []
+      }
+    }
+  },
   computed: {
     isDarkMode () {
       return this.$store.getters.getIsDarkMode
@@ -43,8 +50,9 @@ export default {
     isOpenMenu () {
       return this.$store.getters.getOpenMenuBtn
     },
-    wb () {
-      return this.$store.getters.getWb
+    computedWorkbooks () {
+      console.log(this.workbooks)
+      return this.workbooks
     },
     faUpload () {
       return faUpload
@@ -52,8 +60,8 @@ export default {
   },
   components: {
     DarkModeBtn,
-    upload,
-    heading,
+    Upload,
+    Heading,
     UploadFileList
   },
   methods: {
@@ -68,6 +76,11 @@ export default {
     returnSheetData () {
       const json = this._getSheetJson(this.wb, 0)
       console.log(json)
+    }
+  },
+  data () {
+    return {
+      clickUpload: false
     }
   }
 }
@@ -111,6 +124,9 @@ export default {
   cursor: pointer;
   height: 32px;
   width: 32px;
+  &:active {
+    color: #999999;
+  }
 }
 @media (max-width: 767px) {
   .sideMenu {

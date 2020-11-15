@@ -19,16 +19,9 @@
         v-if="index===0"
         :tabData="tabData"
         :index="index"
+        :tableData="tableData"
         class="table table--smoothScroll"
-      >
-        <template #default="{loading}">
-          <span v-if="loading" class="loadingText">Loading...</span>
-          <heading class="table_heading">
-            {{ String(tabData.name) }}
-          </heading>
-          <xlsx-table :sheet="sheetIndex" class="table_main" />
-        </template>
-      </Table>
+      />
       <Summery v-if="index===1" :tabData="tabData">
         <template #default="{loading}">
           <span v-if="loading" class="loadingText">Loading...</span>
@@ -62,8 +55,8 @@ import Table from './tabView/table'
 import Summery from './tabView/summery'
 import Graph from './tabView/graph'
 import Analysis from './tabView/analysis'
-import GeneralPanel from './../ui/generalPanel'
-import heading from './headingCaption'
+import GeneralPanel from './../../globalComponent/generalPanel'
+import heading from './../../globalComponent/headingCaption'
 export default {
   props: {
     tabs: {
@@ -76,6 +69,13 @@ export default {
       type: Number,
       default () {
         return 0
+      }
+    },
+    tableData: {
+      type: String,
+      required: true,
+      default () {
+        return '<table></table>'
       }
     }
   },
@@ -127,7 +127,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import './../../assets/scss/variables';
+@import './../../../assets/scss/variables';
 .sheetDataView {
   height: 95%;
   &_container {

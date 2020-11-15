@@ -45,7 +45,7 @@
           >
             {{ isSignUp ? 'login': 'signup' }}
           </loginBtn>-->
-          <button @click="preLogin">ログイン</button>
+          <button @click="preLogin" class="button">ログイン</button>
         </section>
         <section class="switchUserModeContainer">
           <a href="#" class="a switchUserMode" @click="_switchUserMode($event)">
@@ -57,10 +57,10 @@
   </div>
 </template>
 <script>
-import IdPasswordArea from './../components/ui/input'
+import IdPasswordArea from './../components/login/input'
 // import loginBtn from './../components/ui/btn/generalBtn'
-import seePasswordBtn from './../components/ui/btn/generalBtn'
-import heading from './../components/layouts/headingCaption'
+import seePasswordBtn from './../components/globalComponent/generalBtn'
+import heading from './../components/globalComponent/headingCaption'
 export default {
   mounted () {
     if (this.$auth.user) {

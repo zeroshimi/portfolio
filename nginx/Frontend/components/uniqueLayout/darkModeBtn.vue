@@ -2,16 +2,24 @@
   <label class="darkModeBtn darkModeBtn--color" :aria-expanded="isDarkMode.toString()" @click="_changeUiMode">
     <input type="checkbox" class="darkModeBtn_input u-displayNone"/>
     <div class="darkModeBtn_circle darkModeBtn_circle--color">
-      <img :src="`/images/switchIcon/${ isDarkMode ? 'DarkIcon.svg' : 'NormalIcon.svg'}`" class="switchSVGSize"/>
+      <fa :icon="faSun" class="switchSVGSize" v-show="!isDarkMode" />
+      <fa :icon="faMoon" class="switchSVGSize" v-show="isDarkMode" />
     </div>
   </label>
 </template>
 
 <script>
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 export default {
   computed: {
     isDarkMode () {
       return this.$store.getters.getIsDarkMode
+    },
+    faSun () {
+      return faSun
+    },
+    faMoon () {
+      return faMoon
     }
   },
   methods: {

@@ -12,14 +12,14 @@
           ]
         "
       >
-        <FileBtnContaienr :index="index" :workbook="workbook" />
+        <ExcelFileBtn :bookIndex="index" :workbook="workbook" />
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-import FileBtnContaienr from './fileBtnContainer'
+import ExcelFileBtn from './ExcelFileBtn/excelFileBtn'
 export default {
   props: {
     workbooks: {
@@ -49,7 +49,7 @@ export default {
     }
   },
   components: {
-    FileBtnContaienr
+    ExcelFileBtn
   }
 }
 </script>

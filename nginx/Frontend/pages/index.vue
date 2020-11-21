@@ -30,12 +30,12 @@
       <div class="mainContents" :class="{ 'mainContents--openMenuWidth':isOpenMenu }">
         <section v-show="!isUpload" class="mainContents_pastAnalysis">
           <nuxt-link to="demo_danfo">demo</nuxt-link>
-          <heading class="mainContents_pastAnalysis_heading">
+          <Heading class="mainContents_pastAnalysis_heading">
             過去データ
-          </heading>
+          </Heading>
           <!--ここクソコード-->
           <div class="mainContents_pastAnalysis_panels">
-            <userImage
+            <UserImage
               v-for="(name, index) in [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]"
               :key="index"
               :index="index"
@@ -46,34 +46,38 @@
           </div>
         </section>
         <section v-if="isUpload" class="mainContents_newAnalysis">
-          <heading class="mainContents_newAnalysis_heading">
+          <Heading class="mainContents_newAnalysis_heading">
             Sheet名
-          </heading>
+          </Heading>
           <div class="mainContents_newAnalysis_tabs">
             <NavigationTab :activeTabIndex="activeTabIndex" :tabs="tabs" @_activateTab="_activateTab" />
-            <SheetDataView :activeTabIndex="activeTabIndex" :tabs="tabs" :tableData="table" />
+            <SheetDataView :activeTabIndex="activeTabIndex" :tabs="tabs" :tableData="table" :activeWorkbook="workbooks[displayExcelIndex]"/>
           </div>
         </section>
       </div>
     </div>
+    <Modal :isDarkMode="isDarkMode" :type="type" />
   </div>
 </template>
 
 <script>
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { mapGetters } from 'vuex'
 import NavigationTab from './../components/main/sheetData/navigationSheetData'
 import SheetDataView from './../components/main/sheetData/sheetDataView'
-import heading from './../components/globalComponent/headingCaption'
+import Heading from './../components/globalComponent/headingCaption'
 import SideBar from './../components/sideBar/sideBar'
-import userImage from './../components/main/userPortfolio'
+import UserImage from './../components/main/userPortfolio'
+import Modal from './../components/modal/modal'
 
 export default {
   components: {
     NavigationTab,
     SheetDataView,
-    heading,
+    Heading,
     SideBar,
-    userImage
+    UserImage,
+    Modal
   },
   data () {
     return {
@@ -98,11 +102,13 @@ export default {
         }
       ],
       activeTabIndex: 0,
-      tableData: ''
+      tableData: '',
+      type: 'welcome'
     }
   },
-  beforeMaunt () {
+  beforeMount () {
     this.$store.dispatch('runSetHeaderTitle', this.name)
+    this.type = this.isFirstLogin ? 'welcome' : 'alert'
   },
   computed: {
     activeTab () {
@@ -119,9 +125,25 @@ export default {
       isOpenMenu: 'getOpenMenuBtn',
       isUpload: 'getIsUpload',
       displaySheetIndex: 'getDisplaySheet',
+      displayExcelIndex: 'getDisplayExcel',
       filedata: 'getDisplayFile',
-      workbooks: 'getWb'
-    })
+      isFirstLogin: 'GET_IS_FIRST_LOGIN'
+    }),
+    workbooks () {
+      this.$store.dispatch('runSetIsUpload', this.$store.getters.getWb.length !== 0)
+      return this.$store.getters.getWb
+    },
+    faTimes () {
+      return faTimes
+    },
+    isModalOpen: {
+      get () {
+        return this.$store.getters.GET_IS_MODAL_OPEN
+      },
+      set ({ bool }) {
+        this.$store.dispatch('RUN_RE_SET_IS_MODAL_OPEN', bool)
+      }
+    }
   },
   methods: {
     _postExpress () {
@@ -169,6 +191,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../assets/scss/variables';
 .fade-enter-active, .fade-leave-active {
   transition: all .5s linear;
 }
@@ -200,7 +223,7 @@ export default {
       height: 5%;
     }
     &_panels {
-      height: 95%;
+      height: 90%;
       overflow: scroll;
     }
   }
@@ -228,5 +251,61 @@ export default {
 
 .isOpenDarkMenuBackGround {
   background-color:rgba(255, 255, 255, 0.2);
+}
+.modal {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+  &_main {
+    background-color: #ddd;
+    border-radius: 16px;
+    height: 50%;
+    min-width: 540px;
+    overflow: hidden;
+    width: 50%;
+    z-index: 501;
+    &_header {
+      align-items: center;
+      display: flex;
+      height: 48px;
+      justify-content: center;
+      padding: 0 16px;
+      position: relative;
+      width: 100%;
+      &--backgroundColor {
+        background-color: $dark-sub-color;
+      }
+      &_close {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        &:hover {
+          cursor: pointer;
+          &:active {
+            color: red;
+          }
+        }
+      }
+      &_title {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+    &_content {
+      height: calc(100% - 48px);
+      padding: 16px;
+      width: 100%;
+    }
+  }
 }
 </style>

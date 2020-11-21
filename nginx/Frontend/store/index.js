@@ -10,7 +10,10 @@ const state = () => ({
   isSignUp: true,
   wb: [],
   rowList: [],
-  tableHeaders: []
+  tableHeaders: [],
+  isModalOpen: true,
+  // 初回ログイン時→DB上にデータがあればfalse
+  isFirstLogin: true
 })
 
 const getters = {
@@ -49,6 +52,12 @@ const getters = {
   },
   getTableHeaders (state) {
     return state.tableHeaders
+  },
+  GET_IS_MODAL_OPEN (state) {
+    return state.isModalOpen
+  },
+  GET_IS_FIRST_LOGIN (state) {
+    return state.isFirstLogin
   }
 }
 
@@ -99,6 +108,12 @@ const mutations = {
     const newWb = JSON.parse(JSON.stringify(state.wb))
     newWb.splice(index, 1)
     state.wb = JSON.parse(JSON.stringify(newWb))
+  },
+  RE_SET_IS_MODAL_OPEN (state, bool) {
+    state.isModalOpen = bool
+  },
+  RE_SET_IS_FIRST_LOGIN (state, bool) {
+    state.isFirstLogin = bool
   }
 }
 
@@ -147,6 +162,12 @@ const actions = {
   },
   RUN_DELETE_FILE_DATA ({ commit }, index) {
     commit('DELETE_FILE_DATA', index)
+  },
+  RUN_RE_SET_IS_MODAL_OPEN ({ commit }, bool) {
+    commit('RE_SET_IS_MODAL_OPEN', bool)
+  },
+  RUN_RE_SET_IS_FIRST_LOGIN ({ commit }, bool) {
+    commit('RE_SET_IS_FIRST_LOGIN', bool)
   }
 }
 

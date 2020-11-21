@@ -1,8 +1,5 @@
 <template>
-  <xlsx-read
-    :file="filedata"
-    class="sheetDataView"
-  >
+  <div>
     <div
       v-for="(tabData, index) in tabs"
       :id="'sheetData'+index"
@@ -23,31 +20,17 @@
         class="table table--smoothScroll"
       />
       <Summery v-if="index===1" :tabData="tabData">
-        <template #default="{loading}">
-          <span v-if="loading" class="loadingText">Loading...</span>
-          <xlsx-json :sheet="sheetIndex" :options="jsonOptions">
-            <template #default="{collection}">
-              <!--v-if="collection"大事-->
-              <ul v-if="collection" class="ul">
-                <GeneralPanel
-                  v-for="(raw, index) in Object.keys(collection[0])"
-                  :key="index"
-                  :dataList="_remakeArray(collection, raw)"
-                >
-                  <heading class="u-displayNone">
-                    {{ raw }}
-                  </heading>
-                  あああああああ
-                </GeneralPanel>
-              </ul>
-            </template>
-          </xlsx-json>
-        </template>
+        <GeneralPanel>
+          <heading class="u-displayNone">
+            {{ JSON.stringify(activeWorkbook) }}
+          </heading>
+          あああああああ
+        </GeneralPanel>
       </Summery>
       <Graph v-if="index===2" :tabData="tabData" />
       <Analysis v-if="index===3" :tabData="tabData" />
     </div>
-  </xlsx-read>
+  </div>
 </template>
 
 <script>
@@ -76,6 +59,13 @@ export default {
       required: true,
       default () {
         return '<table></table>'
+      }
+    },
+    activeWorkbook: {
+      type: Object,
+      required: true,
+      default () {
+        return {}
       }
     }
   },

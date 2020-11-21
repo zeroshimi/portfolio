@@ -13,44 +13,18 @@
       </div>
     </section>
     <transition name="pulldown">
-      <div
-        v-if="isOpen"
-        :id="`fileBtnList${bookIndex}`"
-        aria-hidden="true"
-        class="sheet"
-      >
-        <ul class="ul sheet_list">
-          <li
-            v-for="(sheet, sheetIndex) in _getSheetList(workbook.workbook)"
-            :key="sheetIndex"
-            :value="sheet.name"
-            :class="[
-              'sheet_list_files',
-              {
-                darkFileListBackGroundColor:isDarkMode,
-                normalFileListBackGroundColor:!isDarkMode
-              } ,
-              { 'is-active': (activeExcelIndex===bookIndex && activeSheetIndex===sheetIndex) ,
-                '': !(activeExcelIndex===bookIndex && activeSheetIndex===sheetIndex)
-              }
-            ]"
-            :aria-controls="`Excel${bookIndex}Sheet${sheetIndex}`"
-            :aria-expanded="String(activeExcelIndex===bookIndex && activeSheetIndex===sheetIndex)"
-            @click="_activate(bookIndex, sheetIndex)"
-          >
-            <a :id="`Excel${bookIndex}Sheet${sheetIndex}`" :aria-hidden="String(!(activeExcelIndex===bookIndex && activeSheetIndex===sheetIndex))">
-              {{ _fileNameRemaker(sheet.name, 9, 7, 0) }}
-            </a>
-          </li>
-        </ul>
-      </div>
+      <Pulldown
+        :isOpen="isOpen"
+        :bookIndex="bookIndex"
+        :workbook="workbook"
+      />
     </transition>
   </section>
 </template>
 <script>
 //  ここで選択sheet選択し、以下変更
 import { faAngleRight, faFileExcel, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-// import OpenSheetBtn from './openSheetBtn'
+import Pulldown from './pulldown'
 export default {
   props: {
     bookIndex: {
@@ -96,7 +70,7 @@ export default {
     }
   },
   components: {
-    // OpenSheetBtn
+    Pulldown
   },
   methods: {
     _switchExpanded (e) {
@@ -116,7 +90,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import './../../../assets/scss/variables';
+@import './../../../../assets/scss/variables';
 .fileBtnContainer {
   align-items: center;
   display: flex;
@@ -146,28 +120,7 @@ export default {
 .openBtn {
   transition: transform 0.5s ease;
 }
-.sheet {
-  padding: 0 8px 0 8px;
-  &_list {
-    &_files{
-      border-radius: 5px;
-      padding: 8px 0 8px 16px;
-      &:hover {
-        text-decoration: underline;
-      }
-      &.darkFileListBackGroundColor {
-        &.is-active{
-          background-color: $dark-sub-color;
-        }
-      }
-      &.normalFileListBackGroundColor {
-        &.is-active{
-          background-color: $normal-sub-color;
-        }
-      }
-    }
-  }
-}
+
 .pulldown-enter-active, .pulldown-leave-active {
   transition: opacity .5s;
 }

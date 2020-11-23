@@ -4,11 +4,11 @@
       <MHeader  :isDarkMode="isDarkMode" :type="type"/>
       <MContent :type="type">
         <template v-for="(slide, index) in slideList" :slot="'welcome'" v-show="type === 'welcome'">
-          <img :src="slide.path" class="content_slide" :key="index" v-show="index===slideNum"/>
+          <img :src="slide.path" class="content_slide" :key="index" v-show="index===slideNum" draggable="false" />
         </template>
         <template :slot="'alert'" v-show="type === 'alert'">
           <div class="alert">
-            <fa :icon="faExclamationTriangle" class="alert_icon"/>
+            <fa :icon="faExclamationTriangle" class="alert_icon" draggable="false" />
             <span>メッセージ</span>
           </div>
         </template>

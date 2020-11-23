@@ -8,7 +8,7 @@
           v-for="(num, index) in slideList"
           :key="index"
           @click="changeSlide('normal', index)"
-          class="li"
+          class="li footer_btn_list"
         >
           <a href="#" class="a slideBtn" :class="{ 'slideBtn--active': slideNum === num.index, 'slideBtn--backgroundColor': slideNum !== num.index }">{{ num.index }}</a>
         </li>
@@ -103,10 +103,16 @@ export default {
     justify-content: space-between;
   }
   &_icon {
+    cursor: pointer;
     font-size: 32px;
   }
   &_btn {
     display: flex;
+    &_list {
+      &+.footer_btn_list {
+        margin-left: 4px;
+      }
+    }
   }
 }
 .slideBtn {

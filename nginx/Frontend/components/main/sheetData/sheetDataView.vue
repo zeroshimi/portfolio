@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sheetView">
     <div
       v-for="(tabData, index) in tabs"
       :id="'sheetData'+index"
@@ -118,8 +118,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import './../../../assets/scss/variables';
-.sheetDataView {
+.sheetView {
   height: 95%;
+}
+.sheetDataView {
+  height: 100%;
   &_container {
     height: 100%;
     padding: 8px;
